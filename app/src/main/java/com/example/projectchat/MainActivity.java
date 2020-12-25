@@ -59,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
         for (UserStatus userStatus : userStatuses = new ArrayList<>()) {
             
         }
-        ;
+
+        String uid = FirebaseAuth.getInstance().getUid();
+
+        if (uid != null && uid.length() > 0){
 
         database.getReference().child("users").child(FirebaseAuth.getInstance().getUid())
                 .addValueEventListener(new ValueEventListener() {
@@ -154,7 +157,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        }
+        else {
+            startActivity(new Intent(MainActivity.this, PhoneNumberActivity.class));
+        }
     }
 
     @Override
